@@ -11,7 +11,7 @@ import {Checkbox} from "expo-checkbox";
 export function Home() {
     const [focus, setFocus] = useState(false);
     const [isChecked, setChecked] = useState(false);
-    const [items, setItems] = useState([1]);
+    const [items, setItems] = useState([1,2,3]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -47,11 +47,11 @@ export function Home() {
 
                 <FlatList data={items} showsVerticalScrollIndicator={false}
                           renderItem={({item}) => (
-                              <View style={styles.item} key={item}>
+                              <View style={[styles.item, item === 2 && styles.itemSelected]} key={item}>
                                   <Checkbox style={[styles.itemCheckbox, isChecked && styles.itemCheckboxActive]}
                                             color={isChecked ? '#5E60CE' : '#4EA8DE'}
                                             value={isChecked} onValueChange={setChecked}/>
-                                  <Text style={styles.itemText} numberOfLines={2}>
+                                  <Text style={[styles.itemText, item === 2 && styles.itemTextSelected]} numberOfLines={2}>
                                       Integer urna interdum massa libero auctor neque turpis turpis semper.
                                   </Text>
                               </View>

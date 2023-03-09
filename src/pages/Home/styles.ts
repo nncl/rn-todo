@@ -140,12 +140,19 @@ export const styles = StyleSheet.create({
         padding: 12,
         marginBottom: 8,
     },
+    itemSelected: {
+        borderColor: '#262626',
+    },
     itemText: {
         color: '#fff',
 
         fontFamily: 'Inter_400Regular',
         fontSize: 14,
         lineHeight: 20,
+    },
+    itemTextSelected: {
+        textDecorationLine: 'line-through',
+        color: '#808080',
     },
     itemCheckbox: {
         borderRadius: 100,
@@ -155,5 +162,5 @@ export const styles = StyleSheet.create({
     },
     itemCheckboxActive: {
         fontSize: 4
-    }
+    },
 })
