@@ -2,6 +2,7 @@ import {Image, SafeAreaView, Text, TextInput, TouchableOpacity, View} from 'reac
 
 import logo from '../../../assets/logo.png';
 import add from '../../../assets/plus.png';
+import clipboard from '../../../assets/clipboard.png';
 
 import {styles} from "./styles";
 import {useState} from "react";
@@ -39,6 +40,18 @@ export function Home() {
                             <Text style={styles.countText}>1</Text>
                         </View>
                     </View>
+                </View>
+
+                <View style={styles.empty}>
+                    <Image style={styles.emptyLogo} source={clipboard} />
+
+                    <Text style={[styles.emptyText, styles.emptyTextBold]}>
+                        Você ainda não tem tarefas cadastradas
+                    </Text>
+
+                    <Text style={[styles.emptyText]}>
+                        Crie tarefas e organize seus itens a fazer
+                    </Text>
                 </View>
             </View>
         </SafeAreaView>
