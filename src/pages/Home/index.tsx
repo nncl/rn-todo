@@ -11,7 +11,7 @@ import {Checkbox} from "expo-checkbox";
 
 interface Task {
     value: string;
-    active: true,
+    finished: boolean;
 }
 
 export function Home() {
@@ -25,13 +25,29 @@ export function Home() {
             return Alert.alert('Ops', 'You forgot to type!')
         }
 
-        setItems(prevState => [...prevState, {value: task, active: true}]);
+        setItems(prevState => [...prevState, {value: task, finished: false}]);
         setTask('');
     }
 
     const remove = (i: number) => {
         const filtered = items.filter((_, index) => index !== i);
         setItems(filtered);
+    }
+
+    const toggleStatus = (value: boolean, i: number) => {
+        const nextItems = items.map((item, index) => {
+            if (index === i) {
+                return {...item, finished: value}
+            } else {
+                return item;
+            }
+        });
+
+        setItems(nextItems);
+    }
+
+    const activeTasks = (): number => {
+        return items.filter(item => item.finished).length;
     }
 
     return (
@@ -65,7 +81,7 @@ export function Home() {
                     <View style={styles.headerItem}>
                         <Text style={[styles.headerText, styles.colorPurple]}>Concluídas</Text>
                         <View style={styles.count}>
-                            <Text style={styles.countText}>1</Text>
+                            <Text style={styles.countText}>{activeTasks()}</Text>
                         </View>
                     </View>
                 </View>
@@ -73,12 +89,13 @@ export function Home() {
                 <FlatList data={items}
                           showsVerticalScrollIndicator={false}
                           style={styles.list}
-                          renderItem={({item, index }) => (
-                              <View style={[styles.item, item.active && styles.itemSelected]} key={item}>
-                                  <Checkbox style={[styles.itemCheckbox, !item.active && styles.itemCheckboxActive]}
-                                            color={!item.active ? '#5E60CE' : '#4EA8DE'}
-                                            value={!item.active}/>
-                                  <Text style={[styles.itemText, !item.active && styles.itemTextSelected]}
+                          renderItem={({item, index}) => (
+                              <View style={[styles.item, item.finished && styles.itemSelected]} key={index}>
+                                  <Checkbox style={[styles.itemCheckbox, item.finished && styles.itemCheckboxActive]}
+                                            color={item.finished ? '#5E60CE' : '#4EA8DE'}
+                                            value={item.finished}
+                                            onValueChange={e => toggleStatus(e, index)}/>
+                                  <Text style={[styles.itemText, item.finished && styles.itemTextSelected]}
                                         numberOfLines={2}>
                                       {item.value}
                                   </Text>
