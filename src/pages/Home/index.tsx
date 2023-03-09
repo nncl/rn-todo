@@ -6,7 +6,7 @@ import clipboard from '../../../assets/clipboard.png';
 import trash from '../../../assets/trash.png';
 
 import {styles} from "./styles";
-import {useState} from "react";
+import {Ref, useRef, useState} from "react";
 import {Checkbox} from "expo-checkbox";
 
 interface Task {
@@ -20,9 +20,15 @@ export function Home() {
     const [task, setTask] = useState('');
     const [items, setItems] = useState<Task[]>([]);
 
+    const inputRef: Ref<TextInput> = useRef(null);
+
     const add = () => {
         if (!task) {
-            return Alert.alert('Ops', 'You forgot to type!')
+            Alert.alert('Ops', 'You forgot to type!', [{
+                text: 'Ok', onPress: () => {
+                    inputRef?.current?.focus()
+                }
+            }])
         }
 
         setItems(prevState => [...prevState, {value: task, finished: false}]);
@@ -56,7 +62,8 @@ export function Home() {
                 <Image style={styles.logo} source={logo}/>
 
                 <View style={styles.form}>
-                    <TextInput style={[styles.input, focus && styles.inputFocus]}
+                    <TextInput ref={inputRef}
+                               style={[styles.input, focus && styles.inputFocus]}
                                onFocus={() => setFocus(true)}
                                onBlur={() => setFocus(false)}
                                placeholder='Adicione uma nova tarefa' placeholderTextColor='#808080'
