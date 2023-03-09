@@ -29,6 +29,11 @@ export function Home() {
         setTask('');
     }
 
+    const remove = (i: number) => {
+        const filtered = items.filter((_, index) => index !== i);
+        setItems(filtered);
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrapper}>
@@ -68,7 +73,7 @@ export function Home() {
                 <FlatList data={items}
                           showsVerticalScrollIndicator={false}
                           style={styles.list}
-                          renderItem={({item}) => (
+                          renderItem={({item, index }) => (
                               <View style={[styles.item, item.active && styles.itemSelected]} key={item}>
                                   <Checkbox style={[styles.itemCheckbox, !item.active && styles.itemCheckboxActive]}
                                             color={!item.active ? '#5E60CE' : '#4EA8DE'}
@@ -78,7 +83,7 @@ export function Home() {
                                       {item.value}
                                   </Text>
 
-                                  <TouchableOpacity style={styles.itemButton}>
+                                  <TouchableOpacity style={styles.itemButton} onPress={() => remove(index)}>
                                       <Image source={trash}/>
                                   </TouchableOpacity>
                               </View>
