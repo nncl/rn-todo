@@ -36,8 +36,20 @@ export function Home() {
     }
 
     const remove = (i: number) => {
-        const filtered = items.filter((_, index) => index !== i);
-        setItems(filtered);
+        Alert.alert('Are you sure?', 'We cannot rollback this!', [
+            {
+                text: 'Nope!',
+                style: 'cancel'
+            },
+            {
+                text: 'Im sure',
+                style: 'destructive',
+                onPress: () => {
+                    const filtered = items.filter((_, index) => index !== i);
+                    setItems(filtered);
+                }
+            }
+        ])
     }
 
     const toggleStatus = (value: boolean, i: number) => {
