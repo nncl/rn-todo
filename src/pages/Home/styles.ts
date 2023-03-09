@@ -122,6 +122,10 @@ export const styles = StyleSheet.create({
         fontFamily: 'Inter_700Bold'
     },
 
+    list: {
+        width: '100%'
+    },
+
     item: {
         width: '100%',
 
@@ -144,6 +148,7 @@ export const styles = StyleSheet.create({
         borderColor: '#262626',
     },
     itemText: {
+        flex: 1,
         color: '#fff',
 
         fontFamily: 'Inter_400Regular',
@@ -163,4 +168,11 @@ export const styles = StyleSheet.create({
     itemCheckboxActive: {
         fontSize: 4
     },
+    itemButton: {
+        width: 32,
+        height: 32,
+
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 })

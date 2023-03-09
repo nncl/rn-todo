@@ -3,6 +3,7 @@ import {FlatList, Image, SafeAreaView, Text, TextInput, TouchableOpacity, View} 
 import logo from '../../../assets/logo.png';
 import add from '../../../assets/plus.png';
 import clipboard from '../../../assets/clipboard.png';
+import trash from '../../../assets/trash.png';
 
 import {styles} from "./styles";
 import {useState} from "react";
@@ -45,7 +46,9 @@ export function Home() {
                     </View>
                 </View>
 
-                <FlatList data={items} showsVerticalScrollIndicator={false}
+                <FlatList data={items}
+                          showsVerticalScrollIndicator={false}
+                          style={styles.list}
                           renderItem={({item}) => (
                               <View style={[styles.item, item === 2 && styles.itemSelected]} key={item}>
                                   <Checkbox style={[styles.itemCheckbox, isChecked && styles.itemCheckboxActive]}
@@ -54,6 +57,10 @@ export function Home() {
                                   <Text style={[styles.itemText, item === 2 && styles.itemTextSelected]} numberOfLines={2}>
                                       Integer urna interdum massa libero auctor neque turpis turpis semper.
                                   </Text>
+
+                                  <TouchableOpacity style={styles.itemButton}>
+                                      <Image source={trash} />
+                                  </TouchableOpacity>
                               </View>
                           )}
                           ListEmptyComponent={() => (
