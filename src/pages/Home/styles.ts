@@ -1,5 +1,4 @@
 import {StyleSheet} from "react-native";
-import {Inter_400Regular, Inter_700Bold} from "@expo-google-fonts/inter";
 
 export const styles = StyleSheet.create({
     container: {
@@ -121,5 +120,42 @@ export const styles = StyleSheet.create({
     },
     emptyTextBold: {
         fontFamily: 'Inter_700Bold'
+    },
+
+    item: {
+        width: '100%',
+
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+
+        backgroundColor: '#262626',
+
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#333333',
+
+        borderRadius: 8,
+
+        padding: 12,
+        marginBottom: 8,
+    },
+    itemText: {
+        color: '#fff',
+
+        fontFamily: 'Inter_400Regular',
+        fontSize: 14,
+        lineHeight: 20,
+    },
+    itemCheckbox: {
+        borderColor: '#4EA8DE',
+        borderRadius: 100,
+
+        width: 17,
+        height: 17,
+    },
+    itemCheckboxActive: {
+        borderColor: '#5E60CE',
+        fontSize: 4
     }
 })
