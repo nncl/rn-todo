@@ -11,7 +11,7 @@ import {Checkbox} from "expo-checkbox";
 export function Home() {
     const [focus, setFocus] = useState(false);
     const [isChecked, setChecked] = useState(false);
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState([1]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -49,6 +49,7 @@ export function Home() {
                           renderItem={({item}) => (
                               <View style={styles.item} key={item}>
                                   <Checkbox style={[styles.itemCheckbox, isChecked && styles.itemCheckboxActive]}
+                                            color={isChecked ? '#5E60CE' : '#4EA8DE'}
                                             value={isChecked} onValueChange={setChecked}/>
                                   <Text style={styles.itemText} numberOfLines={2}>
                                       Integer urna interdum massa libero auctor neque turpis turpis semper.

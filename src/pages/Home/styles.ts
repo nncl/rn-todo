@@ -148,14 +148,12 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
     },
     itemCheckbox: {
-        borderColor: '#4EA8DE',
         borderRadius: 100,
 
         width: 17,
         height: 17,
     },
     itemCheckboxActive: {
-        borderColor: '#5E60CE',
         fontSize: 4
     }
 })
