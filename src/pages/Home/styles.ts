@@ -32,6 +32,13 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Inter_400Regular',
         color: '#fff',
+
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#262626',
+    },
+    inputFocus: {
+        borderColor: '#5E60CE',
     },
     button: {
         width: 54,

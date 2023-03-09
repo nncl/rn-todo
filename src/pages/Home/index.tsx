@@ -4,15 +4,21 @@ import logo from '../../../assets/logo.png';
 import add from '../../../assets/plus.png';
 
 import {styles} from "./styles";
+import {useState} from "react";
 
 export function Home() {
+    const [focus, setFocus] = useState(false);
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrapper}>
                 <Image style={styles.logo} source={logo}/>
 
                 <View style={styles.form}>
-                    <TextInput style={styles.input} placeholder='Adicione uma nova tarefa' placeholderTextColor='#808080'/>
+                    <TextInput style={[styles.input, focus && styles.inputFocus]}
+                               onFocus={() => setFocus(true)}
+                               onBlur={() => setFocus(false)}
+                               placeholder='Adicione uma nova tarefa' placeholderTextColor='#808080'/>
                     <TouchableOpacity style={styles.button}>
                         <Image source={add} />
                     </TouchableOpacity>
