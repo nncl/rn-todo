@@ -4,20 +4,18 @@ import {
   Image,
   SafeAreaView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-import logo from '../../../assets/logo.png';
-import addIcon from '../../../assets/plus.png';
 import clipboard from '../../../assets/clipboard.png';
 import trash from '../../../assets/trash.png';
 
 import { styles } from './styles';
-import { Ref, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Checkbox } from 'expo-checkbox';
 import { LogoComponent } from '../../components/logo';
+import { SearchFormComponent } from '../../components/forms/search-form';
 
 interface Task {
   value: string;
@@ -25,27 +23,14 @@ interface Task {
 }
 
 export function Home() {
-  const [focus, setFocus] = useState(false);
-
-  const [task, setTask] = useState('');
   const [items, setItems] = useState<Task[]>([]);
 
-  const inputRef: Ref<TextInput> = useRef(null);
-
-  const add = () => {
+  const add = (task: string) => {
     if (!task) {
-      return Alert.alert('Ops', 'You forgot to type!', [
-        {
-          text: 'Ok',
-          onPress: () => {
-            inputRef?.current?.focus();
-          },
-        },
-      ]);
+      return;
     }
 
     setItems((prevState) => [...prevState, { value: task, finished: false }]);
-    setTask('');
   };
 
   const remove = (i: number) => {
@@ -86,23 +71,7 @@ export function Home() {
       <View style={styles.wrapper}>
         <LogoComponent />
 
-        <View style={styles.form}>
-          <TextInput
-            ref={inputRef}
-            style={[styles.input, focus && styles.inputFocus]}
-            onFocus={() => setFocus(true)}
-            onBlur={() => setFocus(false)}
-            placeholder="Adicione uma nova tarefa"
-            placeholderTextColor="#808080"
-            onChangeText={setTask}
-            value={task}
-            enablesReturnKeyAutomatically={true}
-            onSubmitEditing={add}
-          />
-          <TouchableOpacity style={styles.button} onPress={add}>
-            <Image source={addIcon} />
-          </TouchableOpacity>
-        </View>
+        <SearchFormComponent onSubmit={add} />
 
         <View style={styles.header}>
           <View style={styles.headerItem}>
