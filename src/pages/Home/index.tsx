@@ -33,7 +33,7 @@ export function Home() {
 
   const add = () => {
     if (!task) {
-      Alert.alert('Ops', 'You forgot to type!', [
+      return Alert.alert('Ops', 'You forgot to type!', [
         {
           text: 'Ok',
           onPress: () => {
