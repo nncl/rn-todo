@@ -56,9 +56,6 @@ export const styles = StyleSheet.create({
     width: 17,
     height: 17,
   },
-  itemCheckboxActive: {
-    fontSize: 4,
-  },
   itemButton: {
     width: 32,
     height: 32,

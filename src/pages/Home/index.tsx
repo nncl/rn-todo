@@ -1,22 +1,12 @@
-import {
-  Alert,
-  FlatList,
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-
-import trash from '../../../assets/trash.png';
+import { Alert, FlatList, SafeAreaView, View } from 'react-native';
 
 import { styles } from './styles';
 import { useState } from 'react';
-import { Checkbox } from 'expo-checkbox';
 import { LogoComponent } from '../../components/logo';
 import { SearchFormComponent } from '../../components/forms/search-form';
 import { HeaderComponent } from '../../components/header';
 import { CardEmptyComponent } from '../../components/cards/card-empty';
+import { ItemComponent } from '../../components/items/item';
 
 export interface Task {
   value: string;
@@ -77,36 +67,12 @@ export function Home() {
           showsVerticalScrollIndicator={false}
           style={styles.list}
           renderItem={({ item, index }) => (
-            <View
-              style={[styles.item, item.finished && styles.itemSelected]}
+            <ItemComponent
+              item={item}
               key={index}
-            >
-              <Checkbox
-                style={[
-                  styles.itemCheckbox,
-                  item.finished && styles.itemCheckboxActive,
-                ]}
-                color={item.finished ? '#5E60CE' : '#4EA8DE'}
-                value={item.finished}
-                onValueChange={(e) => toggleStatus(e, index)}
-              />
-              <Text
-                style={[
-                  styles.itemText,
-                  item.finished && styles.itemTextSelected,
-                ]}
-                numberOfLines={2}
-              >
-                {item.value}
-              </Text>
-
-              <TouchableOpacity
-                style={styles.itemButton}
-                onPress={() => remove(index)}
-              >
-                <Image source={trash} />
-              </TouchableOpacity>
-            </View>
+              onRemove={() => remove(index)}
+              onToggleStatus={(e) => toggleStatus(e, index)}
+            />
           )}
           ListEmptyComponent={() => <CardEmptyComponent />}
         />
