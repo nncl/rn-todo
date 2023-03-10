@@ -1,8 +1,10 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Checkbox } from 'expo-checkbox';
+
+import trash from '../../../../assets/trash.png';
+
 import { Task } from '../../../pages/Home';
 import { styles } from '../../../pages/Home/styles';
-import { Checkbox } from 'expo-checkbox';
-import trash from '../../../../assets/trash.png';
 
 interface ItemComponentProps {
   item: Task;
