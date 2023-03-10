@@ -1,6 +1,7 @@
-import { styles } from '../../pages/Home/styles';
 import { Text, View } from 'react-native';
 import { Task } from '../../pages/Home';
+
+import { styles } from './styles';
 
 interface HeaderComponentProps {
   items: Task[];
