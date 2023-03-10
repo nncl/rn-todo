@@ -16,8 +16,9 @@ import { useState } from 'react';
 import { Checkbox } from 'expo-checkbox';
 import { LogoComponent } from '../../components/logo';
 import { SearchFormComponent } from '../../components/forms/search-form';
+import { HeaderComponent } from '../../components/header';
 
-interface Task {
+export interface Task {
   value: string;
   finished: boolean;
 }
@@ -62,10 +63,6 @@ export function Home() {
     setItems(nextItems);
   };
 
-  const activeTasks = (): number => {
-    return items.filter((item) => item.finished).length;
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
@@ -73,24 +70,7 @@ export function Home() {
 
         <SearchFormComponent onSubmit={add} />
 
-        <View style={styles.header}>
-          <View style={styles.headerItem}>
-            <Text style={[styles.headerText, styles.colorBlue]}>Criadas</Text>
-
-            <View style={styles.count}>
-              <Text style={styles.countText}>{items.length}</Text>
-            </View>
-          </View>
-
-          <View style={styles.headerItem}>
-            <Text style={[styles.headerText, styles.colorPurple]}>
-              Concluídas
-            </Text>
-            <View style={styles.count}>
-              <Text style={styles.countText}>{activeTasks()}</Text>
-            </View>
-          </View>
-        </View>
+        <HeaderComponent items={items} />
 
         <FlatList
           data={items}
