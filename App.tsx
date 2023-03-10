@@ -12,8 +12,10 @@ export default function App() {
         return null;
     }
 
-    return (<>
-        <StatusBar style="auto"/>
-        <Home/>
-    </>)
+  return (
+    <>
+      <StatusBar style="light" />
+      <Home />
+    </>
+  );
 }
