@@ -17,6 +17,7 @@ import trash from '../../../assets/trash.png';
 import { styles } from './styles';
 import { Ref, useRef, useState } from 'react';
 import { Checkbox } from 'expo-checkbox';
+import { LogoComponent } from '../../components/logo';
 
 interface Task {
   value: string;
@@ -83,7 +84,7 @@ export function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
-        <Image style={styles.logo} source={logo} />
+        <LogoComponent />
 
         <View style={styles.form}>
           <TextInput
