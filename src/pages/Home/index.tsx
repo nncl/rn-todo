@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 
-import clipboard from '../../../assets/clipboard.png';
 import trash from '../../../assets/trash.png';
 
 import { styles } from './styles';
@@ -17,6 +16,7 @@ import { Checkbox } from 'expo-checkbox';
 import { LogoComponent } from '../../components/logo';
 import { SearchFormComponent } from '../../components/forms/search-form';
 import { HeaderComponent } from '../../components/header';
+import { CardEmptyComponent } from '../../components/cards/card-empty';
 
 export interface Task {
   value: string;
@@ -108,19 +108,7 @@ export function Home() {
               </TouchableOpacity>
             </View>
           )}
-          ListEmptyComponent={() => (
-            <View style={styles.empty}>
-              <Image style={styles.emptyLogo} source={clipboard} />
-
-              <Text style={[styles.emptyText, styles.emptyTextBold]}>
-                Você ainda não tem tarefas cadastradas
-              </Text>
-
-              <Text style={[styles.emptyText]}>
-                Crie tarefas e organize seus itens a fazer
-              </Text>
-            </View>
-          )}
+          ListEmptyComponent={() => <CardEmptyComponent />}
         />
       </View>
     </SafeAreaView>
